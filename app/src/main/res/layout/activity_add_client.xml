@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:paddingEnd="@dimen/add_client_side_padding"
+    android:paddingStart="@dimen/add_client_side_padding"
+    tools:context=".view.AddClientActivity">
+
+    <TextView
+        android:id="@+id/tvNameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:text="Name"
+        android:textSize="@dimen/add_client_default_text_size" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameLabel"
+        android:hint="@string/optional" />
+
+    <LinearLayout
+        android:id="@+id/llAgeParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etName"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:layout_toStartOf="@+id/vDivider"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvAgeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:textSize="@dimen/add_client_default_text_size" />
+
+        <Spinner
+            android:id="@+id/sAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/add_client_common_margin" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vDivider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:id="@+id/llGenderParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/etName"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:layout_toEndOf="@+id/vDivider"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvGenderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="@dimen/add_client_default_text_size" />
+
+        <Spinner
+            android:id="@+id/sGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/add_client_common_margin"
+            android:entries="@array/gender" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSmokerParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAgeParent"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvSmokerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Smoker"
+            android:textSize="@dimen/add_client_default_text_size" />
+
+        <Switch
+            android:id="@+id/sSmoker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:gravity="end" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvOccupationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlSmokerParent"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:text="Occupation"
+        android:textSize="@dimen/add_client_default_text_size" />
+
+    <Spinner
+        android:id="@+id/sOccupation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOccupationLabel"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:entries="@array/occupation" />
+
+    <TextView
+        android:id="@+id/tvOccutionalGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sOccupation"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/blue"
+        android:onClick="showOccupationalGuide"
+        android:text="@string/occupation_guide" />
+
+    <TextView
+        android:id="@+id/tvEmploymentStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOccutionalGuide"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:text="Employment Status"
+        android:textSize="@dimen/add_client_default_text_size" />
+
+    <Spinner
+        android:id="@+id/sEmploymentStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEmploymentStatus"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:entries="@array/employment_status" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sEmploymentStatus"
+        android:layout_marginTop="@dimen/add_client_common_margin"
+        android:text="Next" />
+
+</RelativeLayout>

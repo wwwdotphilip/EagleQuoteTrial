@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="add_client_side_padding">15dp</dimen>
+    <dimen name="add_client_common_margin">15dp</dimen>
+    <dimen name="add_client_default_text_size">20sp</dimen>
+    <dimen name="padding_occupational_up_down">5dp</dimen>
+    <dimen name="padding_occupational_start_end">25dp</dimen>
+    <dimen name="occupational_margin_top">10dp</dimen>
+    <dimen name="occupational_padding_side">15dp</dimen>
+    <dimen name="occupational_content_top_margin">15dp</dimen>
+    <dimen name="occupational_content_top_padding">25dp</dimen>
+    <dimen name="occupational_content_bottom_padding">15dp</dimen>
+    <dimen name="occupational_content_padding_side">10dp</dimen>
+</resources>

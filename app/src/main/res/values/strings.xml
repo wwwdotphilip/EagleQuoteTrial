@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">EagleQuoteTrial</string>
+    <string name="add_client">Add Client</string>
+    <string name="optional">Optional</string>
+    <string name="header_content">Here is a rough guide for selecting an Occupational Class. Note that, because of the variations between insurers, sometime the only way to know for sure is to call an underwriter.</string>
+    <string name="class1_content">Professional (usually tertiary qualified) typically earning over $80,000 per anum</string>
+    <string name="occupational_class_1">Occupational Class 1</string>
+    <string name="occupational_class_2">Occupational Class 2</string>
+    <string name="class2_content">Office workers who do not perform any manual labor</string>
+    <string name="occupational_class_3">Occupational Class 3</string>
+    <string name="class3_content">Skilled traders people (for example a qualified builder) or non-desk based workers (for example technician, shopkeeper, etc)</string>
+    <string name="occupational_class_5">Occupational Class 5</string>
+    <string name="occupational_class_4">Occupational Class 4</string>
+    <string name="class4_content">Skilled or semi-skilled manual workers and heavy machinery operators who are not exposed to health hazards</string>
+    <string name="class5_content">Housewife / Househusband / Student</string>
+    <string name="occupation_guide">Occupation Guide</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="occupation">
+        <item>Class 1</item>
+        <item>Class 2</item>
+        <item>Class 3</item>
+        <item>Class 4</item>
+        <item>Class 5</item>
+    </string-array>
+
+    <string-array name="employment_status">
+        <item>Employed</item>
+        <item>Self-Employed</item>
+        <item>Self-Employed &lt; 3 years</item>
+        <item>Non-Earner</item>
+    </string-array>
+</resources>
