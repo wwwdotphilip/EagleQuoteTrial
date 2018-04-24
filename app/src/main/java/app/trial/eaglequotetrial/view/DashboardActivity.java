@@ -11,13 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import app.trial.eaglequotetrial.R;
-import app.trial.eaglequotetrial.presenter.Request;
 import app.trial.eaglequotetrial.presenter.Session;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private TextView mEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,11 @@ public class DashboardActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+
+        mEmail = headerView.findViewById(R.id.tvEmail);
+        mEmail.setText(Session.getSession().user.email);
     }
 
     @Override
@@ -57,7 +64,7 @@ public class DashboardActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.dash, menu);
+        getMenuInflater().inflate(R.menu.dashboard, menu);
         return true;
     }
 
@@ -82,18 +89,11 @@ public class DashboardActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout) {
+            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
