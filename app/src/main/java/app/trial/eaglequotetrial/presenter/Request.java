@@ -1,18 +1,9 @@
 package app.trial.eaglequotetrial.presenter;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import org.json.JSONObject;
 
@@ -22,10 +13,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import app.trial.eaglequotetrial.model.callback.LoginCallback;
+
 public class Request {
     private static final String MAIN_URL = "https://staging.blackfin.technology/mobile/";
+    private static LoginCallback mCallback;
 
-    public static class Login extends AsyncTask<String, String, String>{
+    public static void setCallback(LoginCallback loginCallback) {
+        mCallback = loginCallback;
+    }
+
+    public static class Login extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -70,15 +68,22 @@ public class Request {
                 app.trial.eaglequotetrial.model.Login login = new Gson().fromJson(response.toString(), app.trial.eaglequotetrial.model.Login.class);
                 Session.saveSession(login.data);
                 Log.v("MainActivityBasic", Session.getSession().authorization.token);
+                if (mCallback != null) {
+                    mCallback.onSuccess();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
+                return e.toString();
             }
             return null;
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String error) {
+            super.onPostExecute(error);
+            if (mCallback != null && error != null) {
+                mCallback.onError(error);
+            }
         }
     }
 }
