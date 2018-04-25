@@ -22,6 +22,8 @@
     <color name="black">#000000</color>
 
     <color name="app_blue">#37c4c5</color>
+    <color name="app_blue2">#221d41</color>
     <color name="color_class_content">#e5e5eb</color>
+
 
 </resources>

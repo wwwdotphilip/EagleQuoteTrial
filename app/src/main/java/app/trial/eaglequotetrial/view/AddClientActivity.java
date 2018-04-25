@@ -1,19 +1,14 @@
 package app.trial.eaglequotetrial.view;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,5 +77,6 @@ public class AddClientActivity extends AppCompatActivity {
         details.name = mName.getText().toString();
 
         Client.addClientDetails(details);
+        startActivity(new Intent(this, BenefitsActivity.class));
     }
 }
