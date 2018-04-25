@@ -1,11 +1,19 @@
 package app.trial.eaglequotetrial.view;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +50,7 @@ public class BenefitsActivity extends AppCompatActivity {
 
             FancyButton fancyButton = findViewById(temp.id);
             fancyButton.setOnClickListener(new BenefitOnClickListener());
+            fancyButton.getText();
         }
     }
 
@@ -66,27 +75,77 @@ public class BenefitsActivity extends AppCompatActivity {
 
     }
 
+    private SpannableStringBuilder customText(String text, int color) {
+        // Initialize a new spannable string builder instance
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(color);
+        SpannableStringBuilder ssBuilderText = new SpannableStringBuilder(text);
+
+        // Apply the text color span
+        ssBuilderText.setSpan(
+                foregroundColorSpan,
+                0,
+                text.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        return ssBuilderText;
+    }
+
     private class BenefitOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
+            FancyButton fancyButton = (FancyButton) v;
+            int icon = 0;
+            for (BenefitIcon item : mBenefitIcons) {
+                if (item.id == v.getId()) {
+                    icon = item.selectedDrawable;
+                }
+            }
             AlertDialog.Builder builder = new AlertDialog.Builder(BenefitsActivity.this);
-            builder.setTitle("Title");
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setTitle(customText(fancyButton.getText().toString(), Color.WHITE));
+            builder.setNegativeButton(customText("Cancel", Color.WHITE), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Log.i(getClass().getSimpleName(), "Cancelled");
-                    updateResources((FancyButton) v, false);
+                    updateResources(fancyButton, false);
                 }
             });
-            builder.setPositiveButton("Apply Changes", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(customText("Apply Changes", Color.WHITE), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Log.i(getClass().getSimpleName(), "Applied");
-                    updateResources((FancyButton) v, true);
+                    updateResources(fancyButton, true);
                 }
             });
-            builder.show();
+            if (icon != 0) {
+                builder.setIcon(getResources().getDrawable(icon));
+            }
+
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.health_cover, null);
+            builder.setView(dialogView);
+
+            Spinner excess = dialogView.findViewById(R.id.sExcess);
+            String[] excessArray = getResources().getStringArray(R.array.health_cover);
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                    BenefitsActivity.this, R.layout.spinner_style, excessArray);
+            spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_style);
+            excess.setAdapter(spinnerArrayAdapter);
+
+            Spinner loading = dialogView.findViewById(R.id.sLoading);
+            String[] loadingArray = getResources().getStringArray(R.array.loading);
+            spinnerArrayAdapter = new ArrayAdapter<>(
+                    BenefitsActivity.this, R.layout.spinner_style, loadingArray);
+            spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_style);
+            loading.setAdapter(spinnerArrayAdapter);
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.app_blue2_transparent)));
+            alertDialog.setOnShowListener(dialog -> {
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
+            });
+            alertDialog.show();
         }
     }
 }

@@ -34,6 +34,35 @@
         <item>Self-Employed &lt; 3 years</item>
         <item>Non-Earner</item>
     </string-array>
+
+    <string-array name="health_cover">
+        <item>Nil - Excess</item>
+        <item>$250 Excess</item>
+        <item>$500 Excess</item>
+        <item>$1000 Excess</item>
+        <item>$2000 Excess</item>
+        <item>$3000 Excess</item>
+        <item>$4000 Excess</item>
+        <item>$4000 Excess</item>
+        <item>$6000 Excess</item>
+        <item>$10000 Excess</item>
+    </string-array>
+
+    <string-array name="loading">
+        <item>0%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>100%</item>
+        <item>125%</item>
+        <item>150%</item>
+        <item>175%</item>
+        <item>200%</item>
+        <item>250%</item>
+        <item>300%</item>
+        <item>400%</item>
+        <item>500%</item>
+    </string-array>
+
     <string name="title_activity_dash">DashActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
