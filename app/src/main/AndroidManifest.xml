@@ -24,7 +24,7 @@
             android:name=".view.DashboardActivity"
             android:label="Dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.LoginActivity"></activity>
+        <activity android:name=".view.LoginActivity" />
         <activity
             android:name=".view.BenefitsActivity"
             android:label="Benefits">

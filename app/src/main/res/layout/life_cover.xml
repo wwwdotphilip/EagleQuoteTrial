@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:padding="20dp">
 
+    <include layout="@layout/benefit_top" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
@@ -104,5 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <include layout="@layout/benefit_bottom"/>
 
 </LinearLayout>

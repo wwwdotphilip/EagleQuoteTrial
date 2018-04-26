@@ -26,6 +26,6 @@
     <color name="app_blue2_transparent">#aa3e3574</color>
     <color name="app_blue3">#289293</color>
     <color name="color_class_content">#e5e5eb</color>
-
-
+    <color name="app_red">#ce0000</color>
+    <color name="app_red2">#a10000</color>
 </resources>
