@@ -203,16 +203,18 @@
 
         </LinearLayout>
 
-        <Button
+        <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/sEmploymentStatus"
             android:layout_marginTop="@dimen/add_client_common_margin"
             android:background="@drawable/bg_button"
             android:onClick="next"
             android:text="Next"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            fancy:fb_defaultColor="@color/app_blue"
+            fancy:fb_focusColor="@color/app_blue3" />
     </LinearLayout>
 
 </ScrollView>
