@@ -35,7 +35,7 @@
         <item>Non-Earner</item>
     </string-array>
 
-    <string-array name="health_cover">
+    <string-array name="excess">
         <item>Nil - Excess</item>
         <item>$250 Excess</item>
         <item>$500 Excess</item>
@@ -61,6 +61,18 @@
         <item>300%</item>
         <item>400%</item>
         <item>500%</item>
+    </string-array>
+
+    <string-array name="yearly_renewable">
+        <item>Yearly Renewable</item>
+        <item>Level (10 Years)</item>
+        <item>Level (15 Years)</item>
+        <item>Level (To Age 65)</item>
+        <item>Level (To Age 70)</item>
+        <item>Level (To Age 80)</item>
+        <item>Level (To Age 85)</item>
+        <item>Level (To Age 90)</item>
+        <item>Level (To Age 100)</item>
     </string-array>
 
     <string name="title_activity_dash">DashActivity</string>

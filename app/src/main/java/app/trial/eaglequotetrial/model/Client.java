@@ -3,6 +3,7 @@ package app.trial.eaglequotetrial.model;
 public class Client {
     private static volatile Client instance;
     private Details mDetails;
+    private Benefits mBenefits;
 
     private static Client getInstance(){
         if (instance == null){
@@ -17,8 +18,20 @@ public class Client {
         instance = null;
     }
 
-    public static void addClientDetails(Details details){
+    public static void setClientDetails(Details details){
         getInstance().mDetails = details;
+    }
+
+    public static void setBenefits(Benefits benefits){
+        getInstance().mBenefits = benefits;
+    }
+
+    public static Details getClientDetails(){
+        return getInstance().mDetails;
+    }
+
+    public static Benefits getBenefits(){
+        return getInstance().mBenefits;
     }
 
     public static class Details{

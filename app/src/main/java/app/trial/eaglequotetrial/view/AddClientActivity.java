@@ -76,7 +76,7 @@ public class AddClientActivity extends AppCompatActivity {
         details.occupation = mOccupationSpinner.getSelectedItem().toString();
         details.name = mName.getText().toString();
 
-        Client.addClientDetails(details);
+        Client.setClientDetails(details);
         startActivity(new Intent(this, BenefitsActivity.class));
     }
 }

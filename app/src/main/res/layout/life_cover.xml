@@ -15,70 +15,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Excess"
+        android:text="Cover Amount"
+        android:textColor="@color/white" />
+
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/etCoverAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Calc Period"
         android:textColor="@color/white" />
 
     <Spinner
-        android:id="@+id/sExcess"
+        android:id="@+id/sRenewable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:entries="@array/excess"
+        android:entries="@array/yearly_renewable"
         android:popupBackground="@color/app_blue2" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Specilist &amp; Test"
-            android:textColor="@color/white" />
-
-        <Switch
-            android:id="@+id/sSpecialist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="GP &amp; Prescriptions"
-            android:textColor="@color/white" />
-
-        <Switch
-            android:id="@+id/sPrescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Dental &amp; Optical"
-            android:textColor="@color/white" />
-
-        <Switch
-            android:id="@+id/sDental"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -108,5 +68,41 @@
         android:backgroundTint="@color/white"
         android:entries="@array/loading"
         android:popupBackground="@color/app_blue2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Index"
+            android:textColor="@color/white" />
+
+        <Switch
+            android:id="@+id/sIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Future Insurability"
+            android:textColor="@color/white" />
+
+        <Switch
+            android:id="@+id/sFutureInsurability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>
