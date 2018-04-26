@@ -2,6 +2,7 @@ package app.trial.eaglequotetrial.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -48,6 +49,21 @@ public class BenefitsActivity extends AppCompatActivity {
             fancyButton.setOnClickListener(new BenefitOnClickListener());
             fancyButton.getText();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Client.setBenefits(null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void next(View view) {
