@@ -1,6 +1,6 @@
 package app.trial.eaglequotetrial.model.callback;
 
-public interface LoginCallback {
-    void onSuccess();
+public interface RequestCallback {
+    void onSuccess(String result);
     void onError(String error);
 }

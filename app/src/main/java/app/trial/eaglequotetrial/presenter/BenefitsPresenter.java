@@ -2,7 +2,6 @@ package app.trial.eaglequotetrial.presenter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,9 +16,6 @@ import java.util.Locale;
 
 import app.trial.eaglequotetrial.R;
 import app.trial.eaglequotetrial.model.BenefitIcon;
-import app.trial.eaglequotetrial.model.Benefits;
-import app.trial.eaglequotetrial.model.HealthCover;
-import app.trial.eaglequotetrial.model.LifeCover;
 import app.trial.eaglequotetrial.model.callback.BenefitsCallback;
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -30,12 +26,10 @@ public class BenefitsPresenter {
     private Spinner loading;
     private Spinner renewable;
     private BenefitsCallback mBenefitsCallback;
-    private Benefits mBenefits;
     private AlertDialog mAlertDialog;
 
     public void loadDialog(Activity activity, FancyButton fancyButton,
-                           List<BenefitIcon> benefitIcons, Benefits benefits) {
-        mBenefits = benefits;
+                           List<BenefitIcon> benefitIcons) {
         int icon = 0;
         for (BenefitIcon item : benefitIcons) {
             if (item.id == fancyButton.getId()) {
@@ -62,11 +56,6 @@ public class BenefitsPresenter {
 
         switch (fancyButton.getId()) {
             case R.id.fbHealthCover:
-                HealthCover healthCover = null;
-                try {
-                    healthCover = mBenefits.healthCover;
-                } catch (Exception ignore) {
-                }
                 dialogView = inflater.inflate(R.layout.health_cover, null);
                 builder.setView(dialogView);
 
@@ -81,32 +70,8 @@ public class BenefitsPresenter {
                 loading = dialogView.findViewById(R.id.sLoading);
                 loading.setAdapter(createSpinnerArrayAdapter(activity,
                         activity.getResources().getStringArray(R.array.loading)));
-                if (healthCover != null) {
-                    specialist.setChecked(healthCover.specialistAndTest);
-                    prescription.setChecked(healthCover.gpAndPrescriptions);
-                    dental.setChecked(healthCover.dentalAndOptical);
-                    int i = 0;
-                    for (String item : activity.getResources().getStringArray(R.array.excess)) {
-                        if (item.equals(healthCover.excess)) {
-                            excess.setSelection(i);
-                        }
-                        i++;
-                    }
-                    i = 0;
-                    for (String item : activity.getResources().getStringArray(R.array.loading)) {
-                        if (item.equals(healthCover.loading)) {
-                            loading.setSelection(i);
-                        }
-                        i++;
-                    }
-                }
                 break;
             case R.id.fbLifeCover:
-                LifeCover lifeCover = null;
-                try {
-                    lifeCover = mBenefits.lifeCover;
-                } catch (Exception ignore) {
-                }
                 dialogView = inflater.inflate(R.layout.life_cover, null);
                 builder.setView(dialogView);
 
@@ -123,25 +88,6 @@ public class BenefitsPresenter {
                 loading = dialogView.findViewById(R.id.sLoading);
                 loading.setAdapter(createSpinnerArrayAdapter(activity,
                         activity.getResources().getStringArray(R.array.loading)));
-                if (lifeCover != null) {
-                    index.setChecked(lifeCover.index);
-                    futureInsurability.setChecked(lifeCover.futureInsurability);
-                    coverAmount.setValue(lifeCover.coverAmount);
-                    int i = 0;
-                    for (String item : activity.getResources().getStringArray(R.array.yearly_renewable)) {
-                        if (item.equals(lifeCover.yearlyRenewable)) {
-                            renewable.setSelection(i);
-                        }
-                        i++;
-                    }
-                    i = 0;
-                    for (String item : activity.getResources().getStringArray(R.array.loading)) {
-                        if (item.equals(lifeCover.loading)) {
-                            loading.setSelection(i);
-                        }
-                        i++;
-                    }
-                }
                 break;
             default:
                 builder.setNegativeButton("Close", (dialog, which) -> {});
@@ -153,27 +99,13 @@ public class BenefitsPresenter {
                 updateResources(activity, fancyButton, true, benefitIcons);
                 switch (fancyButton.getId()) {
                     case R.id.fbHealthCover:
-                        HealthCover healthCover = new HealthCover();
-                        healthCover.excess = excess.getSelectedItem().toString();
-                        healthCover.dentalAndOptical = dental.isChecked();
-                        healthCover.gpAndPrescriptions = prescription.isChecked();
-                        healthCover.loading = loading.getSelectedItem().toString();
-                        healthCover.specialistAndTest = specialist.isChecked();
-                        mBenefits.healthCover = healthCover;
                         if (mBenefitsCallback != null) {
-                            mBenefitsCallback.onHealthCoverUpdate(mBenefits.healthCover);
+                            mBenefitsCallback.onHealthCoverUpdate();
                         }
                         break;
                     case R.id.fbLifeCover:
-                        LifeCover lifeCover = new LifeCover();
-                        lifeCover.coverAmount = coverAmount.getRawValue();
-                        lifeCover.futureInsurability = futureInsurability.isChecked();
-                        lifeCover.index = index.isChecked();
-                        lifeCover.loading = loading.getSelectedItem().toString();
-                        lifeCover.yearlyRenewable = renewable.getSelectedItem().toString();
-                        mBenefits.lifeCover = lifeCover;
                         if (mBenefitsCallback != null) {
-                            mBenefitsCallback.onLifeCoverUpdate(mBenefits.lifeCover);
+                            mBenefitsCallback.onLifeCoverUpdate();
                         }
                         break;
                 }
@@ -191,15 +123,13 @@ public class BenefitsPresenter {
                     updateResources(activity, fancyButton, false, benefitIcons);
                     switch (fancyButton.getId()) {
                         case R.id.fbHealthCover:
-                            mBenefits.healthCover = null;
                             if (mBenefitsCallback != null) {
-                                mBenefitsCallback.onHealthCoverUpdate(null);
+                                mBenefitsCallback.onHealthCoverUpdate();
                             }
                             break;
                         case R.id.fbLifeCover:
-                            mBenefits.lifeCover = null;
                             if (mBenefitsCallback != null) {
-                                mBenefitsCallback.onLifeCoverUpdate(null);
+                                mBenefitsCallback.onLifeCoverUpdate();
                             }
                             break;
                     }

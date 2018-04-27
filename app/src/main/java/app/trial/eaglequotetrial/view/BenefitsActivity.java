@@ -2,6 +2,7 @@ package app.trial.eaglequotetrial.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -10,12 +11,10 @@ import java.util.List;
 
 import app.trial.eaglequotetrial.R;
 import app.trial.eaglequotetrial.model.BenefitIcon;
-import app.trial.eaglequotetrial.model.Benefits;
-import app.trial.eaglequotetrial.model.Client;
-import app.trial.eaglequotetrial.model.HealthCover;
-import app.trial.eaglequotetrial.model.LifeCover;
 import app.trial.eaglequotetrial.model.callback.BenefitsCallback;
+import app.trial.eaglequotetrial.model.callback.RequestCallback;
 import app.trial.eaglequotetrial.presenter.BenefitsPresenter;
+import app.trial.eaglequotetrial.presenter.Request;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class BenefitsActivity extends AppCompatActivity {
@@ -29,7 +28,6 @@ public class BenefitsActivity extends AppCompatActivity {
             {R.id.fbRedundancy, R.drawable.ic_08_redundancy, R.drawable.ic_08_redundancy_1},
             {R.id.fbWaiver, R.drawable.ic_09_waiver_of_premium, R.drawable.ic_09_waiver_of_premium_1}};
     private List<BenefitIcon> mBenefitIcons;
-    private Benefits mBenefits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,6 @@ public class BenefitsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_benefits);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mBenefitIcons = new ArrayList<>();
-        mBenefits = new Benefits();
         for (int[] item : fbId) {
             BenefitIcon temp = new BenefitIcon();
             temp.id = item[0];
@@ -49,12 +46,23 @@ public class BenefitsActivity extends AppCompatActivity {
             fancyButton.setOnClickListener(new BenefitOnClickListener());
             fancyButton.getText();
         }
+        Request.Benefits();
+        Request.setCallback(new RequestCallback() {
+            @Override
+            public void onSuccess(String result) {
+                Log.i(getClass().getSimpleName(), result);
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Client.setBenefits(null);
     }
 
     @Override
@@ -67,7 +75,7 @@ public class BenefitsActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
-        Client.setBenefits(mBenefits);
+
     }
 
     private class BenefitOnClickListener implements View.OnClickListener {
@@ -76,16 +84,16 @@ public class BenefitsActivity extends AppCompatActivity {
         public void onClick(View v) {
             BenefitsPresenter benefitsPresenter = new BenefitsPresenter();
             benefitsPresenter.loadDialog(BenefitsActivity.this,
-                    (FancyButton) v, mBenefitIcons, mBenefits);
+                    (FancyButton) v, mBenefitIcons);
             benefitsPresenter.setCallback(new BenefitsCallback() {
                 @Override
-                public void onHealthCoverUpdate(HealthCover healthCover) {
-                    mBenefits.healthCover = healthCover;
+                public void onHealthCoverUpdate() {
+
                 }
 
                 @Override
-                public void onLifeCoverUpdate(LifeCover lifeCover) {
-                    mBenefits.lifeCover = lifeCover;
+                public void onLifeCoverUpdate() {
+
                 }
             });
         }

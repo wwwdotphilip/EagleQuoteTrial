@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.google.gson.Gson;
 
 import app.trial.eaglequotetrial.R;
-import app.trial.eaglequotetrial.model.callback.LoginCallback;
+import app.trial.eaglequotetrial.model.Login;
+import app.trial.eaglequotetrial.model.callback.RequestCallback;
 import app.trial.eaglequotetrial.presenter.Device;
 import app.trial.eaglequotetrial.presenter.Request;
+import app.trial.eaglequotetrial.presenter.Session;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -17,10 +22,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Request.setCallback(new LoginCallback() {
+        Request.setCallback(new RequestCallback() {
             @Override
-            public void onSuccess() {
-                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+            public void onSuccess(String result) {
+                Login login = new Gson().fromJson(result, app.trial.eaglequotetrial.model.Login.class);
+                Session.saveSession(login.data);
+                Log.v(getClass().getSimpleName(), Session.getSession().authorization.token);
+//                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                startActivity(new Intent(LoginActivity.this, BenefitsActivity.class));
                 finish();
             }
 
@@ -31,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         if (Device.getInstance().isOnline(this)) {
-            new Request.Login().execute();
+            Request.Login();
         } else {
             Snackbar.make(getWindow().getDecorView().getRootView(),
                     "No internet connection.", Snackbar.LENGTH_SHORT).show();

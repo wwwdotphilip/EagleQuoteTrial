@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.trial.eaglequotetrial.R;
-import app.trial.eaglequotetrial.model.Client;
 
 public class AddClientActivity extends AppCompatActivity {
     private Spinner mAgeSpinner, mGenderSpinner, mOccupationSpinner, mEmploymentStatusSpinner;
@@ -40,7 +39,6 @@ public class AddClientActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Client.destroyClient();
     }
 
     @Override
@@ -69,14 +67,6 @@ public class AddClientActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
-        Client.Details details = new Client.Details();
-        details.age = Integer.parseInt(mAgeSpinner.getSelectedItem().toString());
-        details.gender = mGenderSpinner.getSelectedItem().toString();
-        details.employmentStatus = mEmploymentStatusSpinner.getSelectedItem().toString();
-        details.occupation = mOccupationSpinner.getSelectedItem().toString();
-        details.name = mName.getText().toString();
-
-        Client.setClientDetails(details);
         startActivity(new Intent(this, BenefitsActivity.class));
     }
 }
