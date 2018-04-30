@@ -185,22 +185,25 @@ public class BenefitsPresenter {
     private void notifyBenefitCallback(Activity activity, FancyButton fancyButton) {
         Benefit benefit = null;
         Integer index = null;
+        String[] stringInt;
         switch (fancyButton.getId()) {
             case R.id.fbHealthCover:
                 index = 0;
                 mInput.dentalOptical = dental.isChecked();
                 mInput.specialistsTest = specialist.isChecked();
                 mInput.gpPrescriptions = prescription.isChecked();
-                mInput.loading = loading.getSelectedItemPosition() + 1; // todo need more clarification.
-                String[] exesInString = activity.getResources().getStringArray(R.array.excess_int);
-                mInput.excess = Long.parseLong(exesInString[excess.getSelectedItemPosition()]);
+                mInput.loading = loading.getSelectedItemPosition() + 1;
+                stringInt = activity.getResources().getStringArray(R.array.excess_int);
+                mInput.excess = Integer.parseInt(stringInt[excess.getSelectedItemPosition()]);
                 break;
             case R.id.fbLifeCover:
                 index = 1;
-                mInput.loading = loading.getSelectedItemPosition() + 1; // todo need more clarification.
+                stringInt = activity.getResources().getStringArray(R.array.loading_int);
+                mInput.loading = Integer.parseInt(stringInt[loading.getSelectedItemPosition()]);
                 mInput.isFutureInsurability = futureInsurability.isChecked();
                 mInput.coverAmount = coverAmount.getRawValue();
-                mInput.calcPeriod = renewable.getSelectedItemPosition()+1; // TODO: 4/30/18 need more clarifications
+                stringInt = activity.getResources().getStringArray(R.array.yearly_renewable_int);
+                mInput.calcPeriod = Integer.parseInt(stringInt[renewable.getSelectedItemPosition()]);
                 break;
         }
         // TODO: 4/30/18 Need clarification start

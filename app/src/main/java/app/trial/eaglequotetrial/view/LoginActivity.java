@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadNextScreen() {
-        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+        startActivity(new Intent(LoginActivity.this, ResultActivity.class));
         finish();
     }
 }

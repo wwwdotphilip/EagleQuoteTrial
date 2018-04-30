@@ -1,0 +1,270 @@
+{
+  "data": {
+    "userId": "29591104-d3a4-4fce-a808-16786a2a0e49",
+    "quoteId": 1296,
+    "data": {
+      "result": {
+        "providers": [
+          {
+            "providerId": 5,
+            "providerName": "Asteron",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 84,
+                    "productGroupId": 26,
+                    "productName": "Trauma Cover",
+                    "premium": 0,
+                    "hasPremium": false,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 5055,
+                    "errorMessage": "Asteron - total premium $13.83 is below the minimum premium $20.00"
+                  }
+                ]
+              }
+            ],
+            "policyFee": 0,
+            "totalPremium": 0,
+            "containsError": true,
+            "errorSummary": [
+              {
+                "errorId": 5055,
+                "errorMessage": "Asteron - total premium $13.83 is below the minimum premium $20.00"
+              }
+            ]
+          },
+          {
+            "providerId": 6,
+            "providerName": "Fidelity Life",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 89,
+                    "productGroupId": 28,
+                    "productName": "Platinum Plus Trauma",
+                    "premium": 0,
+                    "hasPremium": false,
+                    "hasWopCover": false,
+                    "coverDetail": null,
+                    "description": null,
+                    "errorId": 5055,
+                    "errorMessage": "Fidelity Life - total premium $0 is below the minimum premium $17.50"
+                  }
+                ]
+              }
+            ],
+            "policyFee": 0,
+            "totalPremium": 0,
+            "containsError": true,
+            "errorSummary": [
+              {
+                "errorId": 5055,
+                "errorMessage": "Fidelity Life - total premium $0 is below the minimum premium $17.50"
+              }
+            ]
+          },
+          {
+            "providerId": 8,
+            "providerName": "OnePath",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 18,
+                    "productGroupId": 22,
+                    "productName": "Trauma",
+                    "premium": 0,
+                    "hasPremium": false,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 5055,
+                    "errorMessage": "OnePath - total premium $15.41 is below the minimum premium $20.00"
+                  }
+                ]
+              }
+            ],
+            "policyFee": 0,
+            "totalPremium": 0,
+            "containsError": true,
+            "errorSummary": [
+              {
+                "errorId": 5055,
+                "errorMessage": "OnePath - total premium $15.41 is below the minimum premium $20.00"
+              }
+            ]
+          },
+          {
+            "providerId": 11,
+            "providerName": "Sovereign",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 19,
+                    "productGroupId": 23,
+                    "productName": "Progressive Care",
+                    "premium": 10,
+                    "hasPremium": true,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 0,
+                    "errorMessage": null
+                  }
+                ]
+              }
+            ],
+            "policyFee": 6.15,
+            "totalPremium": 16.15,
+            "containsError": false,
+            "errorSummary": []
+          },
+          {
+            "providerId": 9,
+            "providerName": "Partners Life",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 13,
+                    "productGroupId": 21,
+                    "productName": "Trauma Cover",
+                    "premium": 10.71,
+                    "hasPremium": true,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 0,
+                    "errorMessage": null
+                  }
+                ]
+              }
+            ],
+            "policyFee": 9.95,
+            "totalPremium": 20.66,
+            "containsError": false,
+            "errorSummary": []
+          },
+          {
+            "providerId": 2,
+            "providerName": "AIA",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 12,
+                    "productGroupId": 19,
+                    "productName": "Real Trauma Cover",
+                    "premium": 14.29,
+                    "hasPremium": true,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 0,
+                    "errorMessage": null
+                  }
+                ]
+              }
+            ],
+            "policyFee": 7.95,
+            "totalPremium": 22.24,
+            "containsError": false,
+            "errorSummary": []
+          },
+          {
+            "providerId": 3,
+            "providerName": "AMP",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 133,
+                    "productGroupId": 30,
+                    "productName": "Trauma",
+                    "premium": 23.2,
+                    "hasPremium": true,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 0,
+                    "errorMessage": null
+                  }
+                ]
+              }
+            ],
+            "policyFee": 0,
+            "totalPremium": 23.2,
+            "containsError": false,
+            "errorSummary": []
+          },
+          {
+            "providerId": 4,
+            "providerName": "AMP RPP",
+            "clientBreakdown": [
+              {
+                "clientId": "1",
+                "productPremiums": [
+                  {
+                    "benefitId": 4,
+                    "benefitName": "Trauma",
+                    "productId": 147,
+                    "productGroupId": 97,
+                    "productName": "Trauma Protection",
+                    "premium": 16.96,
+                    "hasPremium": true,
+                    "hasWopCover": true,
+                    "coverDetail": "$100,000, Yearly Renewable",
+                    "description": "Standalone",
+                    "errorId": 0,
+                    "errorMessage": null
+                  }
+                ]
+              }
+            ],
+            "policyFee": 6.89,
+            "totalPremium": 23.85,
+            "containsError": false,
+            "errorSummary": []
+          }
+        ]
+      },
+      "crunchTimeQuoteEngine": 0.3238,
+      "crunchTimeFidelity": 0.2162,
+      "apiLastUpdated": "April 27, 2018 05:30:00 PM GMT+08:00"
+    },
+    "response": {
+      "crunchTimeRequestFromQuoteEngine": 0.5079,
+      "crunchTimeSavingTrans": 0.0039,
+      "crunchTimeSummary": 0.001,
+      "code": 200,
+      "status": "Success",
+      "message": "Successfully request a quote."
+    }
+  }
+}

@@ -38,7 +38,7 @@
             android:label="Benefits" />
         <activity
             android:name=".view.ResultActivity"
-            android:label="Benefits" />
+            android:label="Results" />
     </application>
 
 </manifest>

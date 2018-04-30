@@ -22,4 +22,6 @@
     <dimen name="benefits_icon_border_with">5dp</dimen>
     <dimen name="benefits_icon_margin">5dp</dimen>
     <dimen name="benefits_icon_parent_margin_bottom">10dp</dimen>
+    <dimen name="side_radius">10dp</dimen>
+    <dimen name="sidie_tickness">15dp</dimen>
 </resources>
