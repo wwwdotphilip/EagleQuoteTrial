@@ -1,23 +1,23 @@
 package app.trial.eaglequotetrial.model;
 
 public class Input {
-    public boolean dentalOptical;
-    public boolean specialistsTest;
-    public int benefitPeriod;
-    public int calcPeriod;
-    public boolean isAccelerated;
-    public boolean gpPrescriptions;
-    public int frequency;
-    public boolean isLifeBuyback;
-    public boolean isTpdAddon;
-    public String benefitPeriodType;
-    public String occupationType;
-    public int wopWeekWaitPeriod;
+    public boolean dentalOptical = false;
+    public boolean specialistsTest = false;
+    public int benefitPeriod = 0;
+    public int calcPeriod = 0;
+    public boolean isAccelerated = false;
+    public boolean gpPrescriptions = false;
+    public int frequency = 0;
+    public boolean isLifeBuyback = false;
+    public boolean isTpdAddon = false;
+    public String benefitPeriodType = "Term";
+    public String occupationType = "AnyOccupation";
+    public int wopWeekWaitPeriod = 0;
     public BenefitProductList[] benefitProductList;
-    public boolean isFutureInsurability;
-    public boolean booster;
-    public long excess;
-    public long coverAmount;
-    public long loading;
-    public boolean isTraumaBuyback;
+    public boolean isFutureInsurability = false;
+    public boolean booster = false;
+    public double excess = 0;
+    public double coverAmount = 0;
+    public long loading = 0;
+    public boolean isTraumaBuyback = false;
 }

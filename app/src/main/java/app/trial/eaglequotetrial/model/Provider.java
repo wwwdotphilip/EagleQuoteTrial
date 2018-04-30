@@ -4,8 +4,8 @@ public class Provider {
     public int providerId;
     public String providerName;
     public Product product;
-    public long policyFee;
-    public long totalPremium;
+    public double policyFee;
+    public double totalPremium;
     public ClientBreakdown[] clientBreakdown;
     public ErrorSummary[] errorSummary;
     public ProviderPremium providerPremiums;

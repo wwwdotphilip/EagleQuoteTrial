@@ -16,7 +16,7 @@
         tools:node="replace">
         <activity
             android:name=".view.LoginActivity"
-            android:label="Login">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +35,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.BenefitsActivity"
+            android:label="Benefits" />
+        <activity
+            android:name=".view.ResultActivity"
             android:label="Benefits" />
     </application>
 

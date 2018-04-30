@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".view.DashboardActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_toStartOf="@+id/fab"
+        android:text="Add client ->"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         style="@style/FabTint"
@@ -17,6 +27,7 @@
         android:layout_margin="16dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_add"
+        android:tooltipText="Press me"
         app:fabSize="normal" />
 
 </RelativeLayout>

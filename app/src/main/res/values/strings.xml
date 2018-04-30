@@ -48,6 +48,19 @@
         <item>$10000 Excess</item>
     </string-array>
 
+    <string-array name="excess_int">
+        <item>0</item>
+        <item>250</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>4000</item>
+        <item>6000</item>
+        <item>10000</item>
+    </string-array>
+
     <string-array name="loading">
         <item>0%</item>
         <item>50%</item>
@@ -61,6 +74,21 @@
         <item>300%</item>
         <item>400%</item>
         <item>500%</item>
+    </string-array>
+
+    <string-array name="loading_int">
+        <item>0</item>
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+        <item>125</item>
+        <item>150</item>
+        <item>175</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
     </string-array>
 
     <string-array name="yearly_renewable">

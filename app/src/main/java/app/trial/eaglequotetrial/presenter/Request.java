@@ -3,6 +3,8 @@ package app.trial.eaglequotetrial.presenter;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import app.trial.eaglequotetrial.model.Data;
 import app.trial.eaglequotetrial.model.callback.RequestCallback;
 
 public class Request {
@@ -30,7 +33,6 @@ public class Request {
             jsonParam.put("rememberMe", true);
             new HttpRequest("LogIn", jsonParam, "POST", null).execute();
         } catch (JSONException e) {
-            e.printStackTrace();
             if (mCallback != null) {
                 mCallback.onError(e.toString());
             }
@@ -45,6 +47,23 @@ public class Request {
     public static void Providers() {
         new HttpRequest("provider", null,
                 "GET", Session.getSession().authorization.token).execute();
+    }
+
+    public static void Product() {
+        new HttpRequest("product", null,
+                "GET", Session.getSession().authorization.token).execute();
+    }
+
+    public static void Quote(){
+        try {
+            JSONObject jsonParam = new JSONObject(new Gson().toJson(NewQuotePresenter.getData(), Data.class));
+            new HttpRequest("quote/request-quote", jsonParam,
+                    "POST", Session.getSession().authorization.token).execute();
+        } catch (JSONException e) {
+            if (mCallback != null) {
+                mCallback.onError(e.toString());
+            }
+        }
     }
 
     private static class HttpRequest extends AsyncTask<String, String, String> {
@@ -72,8 +91,7 @@ public class Request {
                 }
 
                 if (jsonParam != null && method.equals("POST")) {
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept", "application/json");
+                    conn.setRequestProperty("Content-Type", "application/json");
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());

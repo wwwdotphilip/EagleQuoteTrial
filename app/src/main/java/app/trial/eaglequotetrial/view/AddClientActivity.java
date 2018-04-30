@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.trial.eaglequotetrial.R;
+import app.trial.eaglequotetrial.model.Client;
+import app.trial.eaglequotetrial.model.Login;
+import app.trial.eaglequotetrial.presenter.NewQuotePresenter;
+import app.trial.eaglequotetrial.presenter.Session;
 
 public class AddClientActivity extends AppCompatActivity {
     private Spinner mAgeSpinner, mGenderSpinner, mOccupationSpinner, mEmploymentStatusSpinner;
@@ -67,6 +71,21 @@ public class AddClientActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
+        Client client = new Client();
+        client.age = mAgeSpinner.getSelectedItem().toString();
+        client.gender = mGenderSpinner.getSelectedItem().toString();
+        client.clientId = "1";
+        client.employedStatus = mEmploymentStatusSpinner.getSelectedItem().toString();
+        client.isChild = false;
+        client.isPrimary = true;
+        client.isSmoker = mSmoker.isChecked();
+        client.name = mName.getText().toString();
+        client.occupationId = mOccupationSpinner.getSelectedItemPosition() + 1;
+
+        NewQuotePresenter.setClient(client);
+        NewQuotePresenter.getData().userId = Session.getSession().user.id;
+        NewQuotePresenter.getData().quoteId = 0;
+
         startActivity(new Intent(this, BenefitsActivity.class));
     }
 }

@@ -6,11 +6,12 @@ public class Data {
     public User user;
     public Benefit[] benefits;
     public Product[] products;
+    public Provider[] providers;
     public Quote[] quote;
     public Client[] clients;
-    public Inputs[] inputs;
     public String userId;
-    public String quoteId;
+    public Inputs[] inputs;
+    public int quoteId;
     public Data data;
     public Result result;
 }

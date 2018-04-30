@@ -26,11 +26,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
                 Login login = new Gson().fromJson(result, app.trial.eaglequotetrial.model.Login.class);
-                Session.saveSession(login.data);
+                Session.saveSession(LoginActivity.this, login.data);
                 Log.v(getClass().getSimpleName(), Session.getSession().authorization.token);
-//                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-                startActivity(new Intent(LoginActivity.this, BenefitsActivity.class));
-                finish();
+                loadNextScreen();
             }
 
             @Override
@@ -40,10 +38,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         if (Device.getInstance().isOnline(this)) {
-            Request.Login();
+            if (!Session.loadSession(this)) {
+                Request.Login();
+            } else {
+                loadNextScreen();
+            }
         } else {
             Snackbar.make(getWindow().getDecorView().getRootView(),
                     "No internet connection.", Snackbar.LENGTH_SHORT).show();
         }
+    }
+
+    private void loadNextScreen() {
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+        finish();
     }
 }

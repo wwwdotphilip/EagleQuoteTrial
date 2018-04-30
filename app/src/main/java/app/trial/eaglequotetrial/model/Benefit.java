@@ -1,6 +1,6 @@
 package app.trial.eaglequotetrial.model;
 
 public class Benefit {
-    public String benefitId;
+    public int benefitId;
     public String name;
 }

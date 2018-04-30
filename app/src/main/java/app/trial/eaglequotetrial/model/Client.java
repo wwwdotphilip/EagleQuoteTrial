@@ -1,10 +1,10 @@
 package app.trial.eaglequotetrial.model;
 
 public class Client {
-    public int clientId;
+    public String clientId;
     public String name;
     public String gender;
-    public int age;
+    public String age;
     public int occupationId;
     public String employedStatus;
     public boolean isSmoker;

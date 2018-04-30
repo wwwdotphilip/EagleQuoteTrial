@@ -6,7 +6,7 @@ public class ProductPremium {
     public int productId;
     public int productGroupId;
     public String productName;
-    public long premium;
+    public double premium;
     public boolean hasPremium;
     public boolean hasWopCover;
     public String coverDetail;

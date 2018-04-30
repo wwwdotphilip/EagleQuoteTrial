@@ -92,8 +92,7 @@ public class DashboardActivity extends AppCompatActivity
         if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_logout) {
-            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-            finish();
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -1,19 +1,23 @@
 package app.trial.eaglequotetrial.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import app.trial.eaglequotetrial.R;
 import app.trial.eaglequotetrial.model.BenefitIcon;
-import app.trial.eaglequotetrial.model.callback.BenefitsCallback;
+import app.trial.eaglequotetrial.model.HttpResponse;
 import app.trial.eaglequotetrial.model.callback.RequestCallback;
 import app.trial.eaglequotetrial.presenter.BenefitsPresenter;
+import app.trial.eaglequotetrial.presenter.NewQuotePresenter;
 import app.trial.eaglequotetrial.presenter.Request;
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -47,17 +51,28 @@ public class BenefitsActivity extends AppCompatActivity {
             fancyButton.getText();
         }
         Request.Benefits();
+        Request.Providers();
+        Request.Product();
         Request.setCallback(new RequestCallback() {
             @Override
             public void onSuccess(String result) {
                 Log.i(getClass().getSimpleName(), result);
+                HttpResponse httpResponse = new Gson().fromJson(result, HttpResponse.class);
+                if (httpResponse.data.benefits != null) {
+                    NewQuotePresenter.setBenefits(httpResponse.data.benefits);
+                } else if (httpResponse.data.products != null) {
+                    NewQuotePresenter.setProducts(httpResponse.data.products);
+                } else if (httpResponse.data.providers != null) {
+                    NewQuotePresenter.setProviders(httpResponse.data.providers);
+                }
             }
 
             @Override
             public void onError(String error) {
-
+                Log.e(getClass().getSimpleName(), error);
             }
         });
+        Log.i(getClass().getSimpleName(), "Client age: " + NewQuotePresenter.getClient().age);
     }
 
     @Override
@@ -75,7 +90,7 @@ public class BenefitsActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
-
+        startActivity(new Intent(BenefitsActivity.this, ResultActivity.class));
     }
 
     private class BenefitOnClickListener implements View.OnClickListener {
@@ -85,16 +100,8 @@ public class BenefitsActivity extends AppCompatActivity {
             BenefitsPresenter benefitsPresenter = new BenefitsPresenter();
             benefitsPresenter.loadDialog(BenefitsActivity.this,
                     (FancyButton) v, mBenefitIcons);
-            benefitsPresenter.setCallback(new BenefitsCallback() {
-                @Override
-                public void onHealthCoverUpdate() {
+            benefitsPresenter.setCallback(benefit -> {
 
-                }
-
-                @Override
-                public void onLifeCoverUpdate() {
-
-                }
             });
         }
     }
