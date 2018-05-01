@@ -26,7 +26,7 @@ public class Session {
     public static void saveSession(Context context, Data data) {
         getInstance().mData = data;
         getInstance().pref = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
-        getInstance().pref.edit().putString(KEY, new Gson().toJson(data)).apply();
+        getInstance().pref.edit().putString(KEY, new Gson().toJson(data.user)).apply();
     }
 
     public static boolean loadSession(Context context) {
@@ -34,7 +34,7 @@ public class Session {
         String dataString = getInstance().pref.getString(KEY, null);
         if (dataString != null) {
             getInstance().mData = new Gson().fromJson(dataString, Data.class);
-            return true;
+            return getInstance().mData.user != null;
         }
         return false;
     }

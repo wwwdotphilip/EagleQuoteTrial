@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import app.trial.eaglequotetrial.R;
+import app.trial.eaglequotetrial.presenter.NewQuotePresenter;
 import app.trial.eaglequotetrial.presenter.Session;
 
 public class DashboardActivity extends AppCompatActivity
@@ -59,6 +60,12 @@ public class DashboardActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        NewQuotePresenter.destroy();
     }
 
     @Override

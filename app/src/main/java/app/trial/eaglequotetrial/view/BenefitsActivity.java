@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -32,12 +33,15 @@ public class BenefitsActivity extends AppCompatActivity {
             {R.id.fbRedundancy, R.drawable.ic_08_redundancy, R.drawable.ic_08_redundancy_1},
             {R.id.fbWaiver, R.drawable.ic_09_waiver_of_premium, R.drawable.ic_09_waiver_of_premium_1}};
     private List<BenefitIcon> mBenefitIcons;
+    private BenefitsPresenter mBenefitsPresenter = new BenefitsPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_benefits);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NewQuotePresenter.clearInputs();
         mBenefitIcons = new ArrayList<>();
         for (int[] item : fbId) {
             BenefitIcon temp = new BenefitIcon();
@@ -72,7 +76,6 @@ public class BenefitsActivity extends AppCompatActivity {
                 Log.e(getClass().getSimpleName(), error);
             }
         });
-        Log.i(getClass().getSimpleName(), "Client age: " + NewQuotePresenter.getClient().age);
     }
 
     @Override
@@ -90,17 +93,20 @@ public class BenefitsActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
-        startActivity(new Intent(BenefitsActivity.this, ResultActivity.class));
+        if (mBenefitsPresenter.prepareBenefits()) {
+            startActivity(new Intent(BenefitsActivity.this, ResultActivity.class));
+        } else {
+            Toast.makeText(this, "No selected benefit", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class BenefitOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            BenefitsPresenter benefitsPresenter = new BenefitsPresenter();
-            benefitsPresenter.loadDialog(BenefitsActivity.this,
+            mBenefitsPresenter.loadDialog(BenefitsActivity.this,
                     (FancyButton) v, mBenefitIcons);
-            benefitsPresenter.setCallback(benefit -> {
+            mBenefitsPresenter.setCallback(benefit -> {
 
             });
         }

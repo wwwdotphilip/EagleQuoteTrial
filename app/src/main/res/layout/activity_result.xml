@@ -12,44 +12,58 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvPremiumRange"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:text="4 Results, $123.40 - $134.43"
-            android:textColor="@color/black" />
+            android:layout_gravity="center" />
 
         <LinearLayout
-            android:id="@+id/llResult"
+            android:id="@+id/llParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/no_results_available"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/tvPremiumRange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/black" />
 
-        <LinearLayout
-            android:id="@+id/llNoResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            <LinearLayout
+                android:id="@+id/llResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnNext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/add_client_common_margin"
-            android:text="@string/save"
-            android:textColor="@color/white"
-            fancy:fb_defaultColor="@color/app_blue"
-            fancy:fb_focusColor="@color/app_blue3" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/no_results_available"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llNoResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/add_client_common_margin"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                fancy:fb_defaultColor="@color/app_blue"
+                fancy:fb_focusColor="@color/app_blue3" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

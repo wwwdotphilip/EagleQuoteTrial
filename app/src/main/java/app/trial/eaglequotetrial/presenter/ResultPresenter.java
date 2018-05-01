@@ -38,7 +38,8 @@ public class ResultPresenter {
         List<Provider> resultProvider = new ArrayList<>();
         List<Provider> noResultProvider = new ArrayList<>();
         for (Provider item : getInstance().mProviders) {
-            if (item.errorSummary.length > 0) {
+            String errorMessage = NewQuotePresenter.getErrorMessage(item);
+            if (errorMessage != null) {
                 noResultProvider.add(item);
             } else {
                 if (min == null || item.totalPremium < min) {

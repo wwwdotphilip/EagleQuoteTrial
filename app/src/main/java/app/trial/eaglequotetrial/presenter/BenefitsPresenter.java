@@ -2,6 +2,7 @@ package app.trial.eaglequotetrial.presenter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,14 +14,15 @@ import android.widget.TextView;
 import com.blackcat.currencyedittext.CurrencyEditText;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import app.trial.eaglequotetrial.R;
 import app.trial.eaglequotetrial.model.Benefit;
 import app.trial.eaglequotetrial.model.BenefitIcon;
 import app.trial.eaglequotetrial.model.BenefitProductList;
-import app.trial.eaglequotetrial.model.Input;
 import app.trial.eaglequotetrial.model.Inputs;
 import app.trial.eaglequotetrial.model.Product;
 import app.trial.eaglequotetrial.model.Provider;
@@ -39,8 +41,8 @@ public class BenefitsPresenter {
     private AlertDialog mAlertDialog;
     private String[] benefitList = {"Health Cover", "Life Cover"};
     private int mIcon = 0;
-    private Inputs mInputs = new Inputs();
-    private Input mInput = new Input();
+    private Map<String, BenefitProductList> benefitProductListMap = new HashMap<>();
+    private Integer mIndex = null;
 
     public void loadDialog(Activity activity, FancyButton fancyButton,
                            List<BenefitIcon> benefitIcons) {
@@ -69,6 +71,7 @@ public class BenefitsPresenter {
 
         switch (fancyButton.getId()) {
             case R.id.fbHealthCover:
+                mIndex = 0;
                 dialogView = inflater.inflate(R.layout.health_cover, null);
                 builder.setView(dialogView);
 
@@ -92,9 +95,8 @@ public class BenefitsPresenter {
                 if (NewQuotePresenter.getData().inputs != null) {
                     Inputs[] inputs = NewQuotePresenter.getData().inputs;
                     for (Inputs inputItem : inputs) {
-                        if (inputItem.clientId == Integer.parseInt(NewQuotePresenter.getClient().clientId)) {
+                        if (inputItem.clientId == Integer.parseInt(NewQuotePresenter.getCurrentClient().clientId)) {
                             int j;
-                            mInput = inputItem.inputs;
                             specialist.setChecked(inputItem.inputs.specialistsTest);
                             prescription.setChecked(inputItem.inputs.gpPrescriptions);
                             dental.setChecked(inputItem.inputs.dentalOptical);
@@ -113,6 +115,7 @@ public class BenefitsPresenter {
                 }
                 break;
             case R.id.fbLifeCover:
+                mIndex = 1;
                 dialogView = inflater.inflate(R.layout.life_cover, null);
                 builder.setView(dialogView);
 
@@ -138,8 +141,7 @@ public class BenefitsPresenter {
                 if (NewQuotePresenter.getData().inputs != null) {
                     Inputs[] inputs = NewQuotePresenter.getData().inputs;
                     for (Inputs inputItem : inputs) {
-                        if (inputItem.clientId == Integer.parseInt(NewQuotePresenter.getClient().clientId)) {
-                            mInput = inputItem.inputs;
+                        if (inputItem.clientId == Integer.parseInt(NewQuotePresenter.getCurrentClient().clientId)) {
                             futureInsurability.setChecked(inputItem.inputs.isFutureInsurability);
                             coverAmount.setValue((long) inputItem.inputs.coverAmount);
                             renewable.setSelection(inputItem.inputs.calcPeriod);
@@ -171,6 +173,7 @@ public class BenefitsPresenter {
                 confirmation.setNegativeButton("No", (dialog, which) -> {
                 });
                 confirmation.setPositiveButton("Yes", (dialog1, which1) -> {
+                    removeBenefitProductList();
                     updateResources(activity, fancyButton, false, benefitIcons);
                     notifyBenefitCallback(activity, fancyButton);
                     mAlertDialog.dismiss();
@@ -182,83 +185,114 @@ public class BenefitsPresenter {
 
     }
 
+    private void removeBenefitProductList() {
+        int i = 0;
+        for (Map.Entry<String, BenefitProductList> item :
+                benefitProductListMap.entrySet()) {
+            String key = String.valueOf(mIndex + i);
+            if (key.equals(item.getKey())) {
+                benefitProductListMap.remove(key);
+            }
+            i++;
+        }
+    }
+
     private void notifyBenefitCallback(Activity activity, FancyButton fancyButton) {
         Benefit benefit = null;
-        Integer index = null;
         String[] stringInt;
         switch (fancyButton.getId()) {
             case R.id.fbHealthCover:
-                index = 0;
-                mInput.dentalOptical = dental.isChecked();
-                mInput.specialistsTest = specialist.isChecked();
-                mInput.gpPrescriptions = prescription.isChecked();
-                mInput.loading = loading.getSelectedItemPosition() + 1;
+                NewQuotePresenter.getCurrentInput().inputs.dentalOptical = dental.isChecked();
+                NewQuotePresenter.getCurrentInput().inputs.specialistsTest = specialist.isChecked();
+                NewQuotePresenter.getCurrentInput().inputs.gpPrescriptions = prescription.isChecked();
+                NewQuotePresenter.getCurrentInput().inputs.loading = loading.getSelectedItemPosition() + 1;
                 stringInt = activity.getResources().getStringArray(R.array.excess_int);
-                mInput.excess = Integer.parseInt(stringInt[excess.getSelectedItemPosition()]);
+                NewQuotePresenter.getCurrentInput().inputs.excess = Integer.parseInt(stringInt[excess.getSelectedItemPosition()]);
                 break;
             case R.id.fbLifeCover:
-                index = 1;
                 stringInt = activity.getResources().getStringArray(R.array.loading_int);
-                mInput.loading = Integer.parseInt(stringInt[loading.getSelectedItemPosition()]);
-                mInput.isFutureInsurability = futureInsurability.isChecked();
-                mInput.coverAmount = coverAmount.getRawValue();
+                NewQuotePresenter.getCurrentInput().inputs.loading = Integer.parseInt(stringInt[loading.getSelectedItemPosition()]);
+                NewQuotePresenter.getCurrentInput().inputs.isFutureInsurability = futureInsurability.isChecked();
+                NewQuotePresenter.getCurrentInput().inputs.coverAmount = coverAmount.getRawValue();
                 stringInt = activity.getResources().getStringArray(R.array.yearly_renewable_int);
-                mInput.calcPeriod = Integer.parseInt(stringInt[renewable.getSelectedItemPosition()]);
+                NewQuotePresenter.getCurrentInput().inputs.calcPeriod = Integer.parseInt(stringInt[renewable.getSelectedItemPosition()]);
                 break;
         }
         // TODO: 4/30/18 Need clarification start
-        mInput.benefitPeriod = 0;
-        mInput.isAccelerated = false;
-        mInput.frequency = 12;
-        mInput.isLifeBuyback = true;
-        mInput.isTpdAddon = true;
-        mInput.benefitPeriodType = "Term";
-        mInput.occupationType = "AnyOccupation";
-        mInput.wopWeekWaitPeriod = 0;
-        mInput.booster = false;
-        mInput.isTraumaBuyback = false;
+        NewQuotePresenter.getCurrentInput().inputs.benefitPeriod = 0;
+        NewQuotePresenter.getCurrentInput().inputs.isAccelerated = false;
+        NewQuotePresenter.getCurrentInput().inputs.frequency = 12;
+        NewQuotePresenter.getCurrentInput().inputs.isLifeBuyback = false;
+        NewQuotePresenter.getCurrentInput().inputs.isTpdAddon = true;
+        NewQuotePresenter.getCurrentInput().inputs.benefitPeriodType = "Term";
+        NewQuotePresenter.getCurrentInput().inputs.occupationType = "AnyOccupation";
+        NewQuotePresenter.getCurrentInput().inputs.wopWeekWaitPeriod = 0;
+        NewQuotePresenter.getCurrentInput().inputs.booster = false;
+        NewQuotePresenter.getCurrentInput().inputs.isTraumaBuyback = false;
         // TODO: 4/30/18 Need clarification end
 
-        if (index != null) {
-            for (Benefit item : NewQuotePresenter.getBenefits()) {
-                if (item.name.equals(benefitList[index])) {
+        if (mIndex != null) {
+            List<BenefitProductList> temp = new ArrayList<>();
+            Benefit[] benefits = NewQuotePresenter.getBenefits();
+            Product[] products = NewQuotePresenter.getProducts();
+            Provider[] providers = NewQuotePresenter.getProviders();
+            BenefitProductList benefitProductList;
+            for (Benefit item : benefits) {
+                if (item.name.equals(benefitList[mIndex])) {
                     benefit = item;
-                    List<BenefitProductList> bpList = new ArrayList<>();
-                    BenefitProductList benefitProductList = new BenefitProductList();
-                    for (Product ptItem : NewQuotePresenter.getProducts()) {
-                        if (ptItem.benefitId == item.benefitId) {
-                            benefitProductList.benefitId = ptItem.benefitId;
-                            benefitProductList.productGroupId = ptItem.productGroupId;
-                            benefitProductList.productName = ptItem.productName;
-                            benefitProductList.providerId = ptItem.providerId;
-                            for (Provider pItem : NewQuotePresenter.getProviders()) {
-                                if (pItem.providerId == benefitProductList.providerId) {
-                                    benefitProductList.providerName = pItem.providerName;
-                                }
-                            }
-                            int amount = 0;
-                            if (coverAmount != null) {
-                                amount = (int) coverAmount.getRawValue();
-                            }
-                            benefitProductList.wopCoverAmount = amount;
-                            bpList.add(benefitProductList);
-                        }
-                    }
-                    mInput.benefitProductList = new BenefitProductList[bpList.size()];
-                    for (int j = 0; j < bpList.size(); j++) {
-                        mInput.benefitProductList[j] = bpList.get(j);
-                    }
                     break;
                 }
             }
-            mInputs.inputs = mInput;
+            if (benefit != null) {
+                for (Product ptItem : products) {
+                    if (ptItem.benefitId == benefit.benefitId) {
+                        benefitProductList = new BenefitProductList();
+                        benefitProductList.benefitId = ptItem.benefitId;
+                        benefitProductList.productGroupId = ptItem.productGroupId;
+                        benefitProductList.productName = ptItem.productName;
+                        benefitProductList.providerId = ptItem.providerId;
+                        for (Provider pItem : providers) {
+                            if (pItem.providerId == benefitProductList.providerId) {
+                                benefitProductList.providerName = pItem.providerName;
+                                break;
+                            }
+                        }
+                        int amount = 0;
+                        if (coverAmount != null) {
+                            amount = (int) coverAmount.getRawValue();
+                        }
+                        benefitProductList.wopCoverAmount = amount;
+                        temp.add(benefitProductList);
+                    }
+                }
+            }
+            if (benefitProductListMap.size() > 0) {
+                boolean skip = false;
+                for (Map.Entry<String, BenefitProductList> item :
+                        benefitProductListMap.entrySet()) {
+                    String key = String.valueOf(benefitList[mIndex]);
+                    if (item.getKey().contains(key)) {
+                        skip = true;
+                        break;
+                    }
+                }
+                for (int i = 0; i < temp.size(); i++) {
+                    if (!skip) {
+                        String key = String.valueOf(benefitList[mIndex] + i +
+                                benefitProductListMap.size());
+                        benefitProductListMap.put(key, temp.get(i));
+                    }
+                }
+            } else {
+                for (int i = 0; i < temp.size(); i++) {
+                    String key = String.valueOf(benefitList[mIndex] + i);
+                    benefitProductListMap.put(key, temp.get(i));
+                }
+            }
             if (mBenefitsCallback != null) {
                 mBenefitsCallback.onBenefitUpdate(benefit);
             }
         }
-
-        mInputs.clientId = Integer.parseInt(NewQuotePresenter.getClient().clientId);
-        NewQuotePresenter.overrideInput(mInputs);
     }
 
     private void updateResources(Activity activity, FancyButton fancyButton,
@@ -287,5 +321,23 @@ public class BenefitsPresenter {
 
     public void setCallback(BenefitsCallback benefitsCallback) {
         mBenefitsCallback = benefitsCallback;
+    }
+
+    public boolean prepareBenefits() {
+        if (benefitProductListMap.size() > 0) {
+            BenefitProductList[] benefitProductList = new BenefitProductList[benefitProductListMap.size()];
+            int i = 0;
+            for (Map.Entry<String, BenefitProductList> item :
+                    benefitProductListMap.entrySet()) {
+                benefitProductList[i] = item.getValue();
+                i++;
+            }
+            NewQuotePresenter.updateBenefitProductList(benefitProductList);
+            Inputs[] inputs = NewQuotePresenter.getData().inputs;
+            Log.v("Inputs", String.valueOf(inputs.length));
+            return true;
+        } else {
+            return false;
+        }
     }
 }

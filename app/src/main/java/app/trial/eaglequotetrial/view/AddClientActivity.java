@@ -15,7 +15,6 @@ import java.util.List;
 
 import app.trial.eaglequotetrial.R;
 import app.trial.eaglequotetrial.model.Client;
-import app.trial.eaglequotetrial.model.Login;
 import app.trial.eaglequotetrial.presenter.NewQuotePresenter;
 import app.trial.eaglequotetrial.presenter.Session;
 
@@ -30,6 +29,7 @@ public class AddClientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_client);
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        NewQuotePresenter.clearClient();
         mName = findViewById(R.id.etName);
         mAgeSpinner = findViewById(R.id.sAge);
         mGenderSpinner = findViewById(R.id.sGender);
@@ -73,7 +73,7 @@ public class AddClientActivity extends AppCompatActivity {
     public void next(View view) {
         Client client = new Client();
         client.age = mAgeSpinner.getSelectedItem().toString();
-        client.gender = mGenderSpinner.getSelectedItem().toString();
+        client.gender = mGenderSpinner.getSelectedItem().toString().substring(0, 1);
         client.clientId = "1";
         client.employedStatus = mEmploymentStatusSpinner.getSelectedItem().toString();
         client.isChild = false;
@@ -82,7 +82,7 @@ public class AddClientActivity extends AppCompatActivity {
         client.name = mName.getText().toString();
         client.occupationId = mOccupationSpinner.getSelectedItemPosition() + 1;
 
-        NewQuotePresenter.setClient(client);
+        NewQuotePresenter.addClient(client);
         NewQuotePresenter.getData().userId = Session.getSession().user.id;
         NewQuotePresenter.getData().quoteId = 0;
 

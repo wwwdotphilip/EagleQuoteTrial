@@ -39,6 +39,9 @@
         <activity
             android:name=".view.ResultActivity"
             android:label="Results" />
+        <activity
+            android:name=".view.BreakdownActivity"
+            android:label="Breakdown" />
     </application>
 
 </manifest>

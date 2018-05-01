@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.google.gson.Gson;
 
 import app.trial.eaglequotetrial.R;
-import app.trial.eaglequotetrial.model.Login;
+import app.trial.eaglequotetrial.model.HttpResponse;
 import app.trial.eaglequotetrial.model.callback.RequestCallback;
 import app.trial.eaglequotetrial.presenter.Device;
+import app.trial.eaglequotetrial.presenter.NewQuotePresenter;
 import app.trial.eaglequotetrial.presenter.Request;
 import app.trial.eaglequotetrial.presenter.Session;
 
@@ -25,10 +25,25 @@ public class LoginActivity extends AppCompatActivity {
         Request.setCallback(new RequestCallback() {
             @Override
             public void onSuccess(String result) {
-                Login login = new Gson().fromJson(result, app.trial.eaglequotetrial.model.Login.class);
-                Session.saveSession(LoginActivity.this, login.data);
-                Log.v(getClass().getSimpleName(), Session.getSession().authorization.token);
-                loadNextScreen();
+
+                HttpResponse httpResponse = new Gson().fromJson(result, HttpResponse.class);
+                if (httpResponse.data.benefits != null) {
+                    NewQuotePresenter.setBenefits(httpResponse.data.benefits);
+                } else if (httpResponse.data.products != null) {
+                    NewQuotePresenter.setProducts(httpResponse.data.products);
+                } else if (httpResponse.data.providers != null) {
+                    NewQuotePresenter.setProviders(httpResponse.data.providers);
+                } else if (httpResponse.data.user != null) {
+                    Session.saveSession(LoginActivity.this, httpResponse.data);
+                    Request.Benefits();
+                    Request.Providers();
+                    Request.Product();
+                }
+                if (NewQuotePresenter.getBenefits() != null && NewQuotePresenter.getProviders() != null
+                        && NewQuotePresenter.getProducts() != null) {
+                    NewQuotePresenter.storeData(LoginActivity.this);
+                    loadNextScreen();
+                }
             }
 
             @Override
@@ -41,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             if (!Session.loadSession(this)) {
                 Request.Login();
             } else {
+                NewQuotePresenter.loadData(this);
                 loadNextScreen();
             }
         } else {
@@ -50,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadNextScreen() {
-        startActivity(new Intent(LoginActivity.this, ResultActivity.class));
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         finish();
     }
 }
