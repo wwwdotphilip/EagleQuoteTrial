@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.BenefitsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/benefits_icon_parent_margin_bottom"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbHealthCover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_01_health_benefits_1"
+                fancy:fb_text="Health Cover"
+                fancy:fb_textColor="@color/app_blue2" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbLifeCover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_02_life_cover_1"
+                fancy:fb_text="Life Cover"
+                fancy:fb_textColor="@color/app_blue2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/benefits_icon_parent_margin_bottom"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbFamilyProtection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_03_family_protection_1"
+                fancy:fb_text="Family Protection"
+                fancy:fb_textColor="@color/app_blue2" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbTrauma"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_04_trauma_1"
+                fancy:fb_text="Trauma"
+                fancy:fb_textColor="@color/app_blue2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/benefits_icon_parent_margin_bottom"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbDisability"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_05_disability_1"
+                fancy:fb_text="Total and Permanent Disability"
+                fancy:fb_textColor="@color/app_blue2" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbIncomeProtection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_06_income_protection_1"
+                fancy:fb_text="Income Protection"
+                fancy:fb_textColor="@color/app_blue2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/benefits_icon_parent_margin_bottom"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbMortgage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_07_mortgage_1"
+                fancy:fb_text="Mortgage Repayment Cover"
+                fancy:fb_textColor="@color/app_blue2" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbRedundancy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_08_redundancy_1"
+                fancy:fb_text="Redundancy Cover"
+                fancy:fb_textColor="@color/app_blue2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/benefits_icon_parent_margin_bottom"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/fbWaiver"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_09_waiver_of_premium_1"
+                fancy:fb_text="Waiver Premium"
+                fancy:fb_textColor="@color/app_blue2" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/benefits_icon_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/benefits_icon_padding"
+                android:visibility="invisible"
+                fancy:fb_borderWidth="@dimen/benefits_icon_border_with"
+                fancy:fb_defaultColor="@color/color_class_content"
+                fancy:fb_focusColor="@color/app_blue"
+                fancy:fb_iconPosition="top"
+                fancy:fb_iconResource="@drawable/ic_09_waiver_of_premium_1"
+                fancy:fb_text="Waiver Premium"
+                fancy:fb_textColor="@color/app_blue2" />
+
+        </LinearLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sEmploymentStatus"
+            android:layout_marginTop="@dimen/add_client_common_margin"
+            android:background="@drawable/bg_button"
+            android:onClick="next"
+            android:text="Next"
+            android:textColor="@color/white"
+            fancy:fb_defaultColor="@color/app_blue"
+            fancy:fb_focusColor="@color/app_blue3" />
+    </LinearLayout>
+
+</ScrollView>

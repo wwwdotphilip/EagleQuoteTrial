@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,7 +45,8 @@
             android:id="@+id/sAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/add_client_common_margin" />
+            android:layout_marginTop="@dimen/add_client_common_margin"
+            android:padding="@dimen/spinner_padding" />
     </LinearLayout>
 
     <View
@@ -75,7 +77,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/add_client_common_margin"
-            android:entries="@array/gender" />
+            android:entries="@array/gender"
+            android:padding="@dimen/spinner_padding" />
     </LinearLayout>
 
     <RelativeLayout
@@ -114,46 +117,67 @@
 
     <Spinner
         android:id="@+id/sOccupation"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvOccupationLabel"
         android:layout_marginTop="@dimen/add_client_common_margin"
-        android:entries="@array/occupation" />
+        android:entries="@array/occupation"
+        android:padding="@dimen/spinner_padding" />
 
-    <TextView
-        android:id="@+id/tvOccutionalGuide"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llOccupationalGuide"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sOccupation"
+        android:layout_marginTop="5dp"
         android:clickable="true"
         android:focusable="true"
-        android:textColor="@color/blue"
+        android:gravity="center_vertical"
         android:onClick="showOccupationalGuide"
-        android:text="@string/occupation_guide" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/waiver" />
+
+        <TextView
+            android:id="@+id/tvOccutionalGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/occupation_guide"
+            android:textColor="@color/app_blue" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvEmploymentStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOccutionalGuide"
+        android:layout_below="@+id/llOccupationalGuide"
         android:layout_marginTop="@dimen/add_client_common_margin"
         android:text="Employment Status"
         android:textSize="@dimen/add_client_default_text_size" />
 
     <Spinner
         android:id="@+id/sEmploymentStatus"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvEmploymentStatus"
         android:layout_marginTop="@dimen/add_client_common_margin"
-        android:entries="@array/employment_status" />
+        android:entries="@array/employment_status"
+        android:padding="@dimen/spinner_padding" />
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sEmploymentStatus"
         android:layout_marginTop="@dimen/add_client_common_margin"
-        android:text="Next" />
+        android:onClick="next"
+        android:text="Next"
+        android:textColor="@color/white"
+        fancy:fb_defaultColor="@color/app_blue"
+        fancy:fb_focusColor="@color/app_blue3"/>
 
 </RelativeLayout>

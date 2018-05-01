@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/yellow" />
+            <corners android:radius="@dimen/side_radius" />
+        </shape>
+    </item>
+    <item android:left="@dimen/sidie_tickness">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/color_class_content" />
+            <corners
+                android:bottomLeftRadius="0dip"
+                android:bottomRightRadius="0dip"
+                android:topLeftRadius="0dip"
+                android:topRightRadius="@dimen/side_radius" />
+        </shape>
+    </item>
+</layer-list>

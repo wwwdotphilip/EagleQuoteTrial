@@ -1,0 +1,71 @@
+{
+  "data": {
+    "response": {
+      "code": 200,
+      "status": "Success",
+      "message": "Successfully fetch products."
+    },
+    "providers": [
+      {
+        "providerId": 1,
+        "providerName": "Accuro",
+        "status": true
+      },
+      {
+        "providerId": 2,
+        "providerName": "AIA",
+        "status": true
+      },
+      {
+        "providerId": 3,
+        "providerName": "AMP",
+        "status": true
+      },
+      {
+        "providerId": 4,
+        "providerName": "AMP RPP",
+        "status": true
+      },
+      {
+        "providerId": 5,
+        "providerName": "Asteron",
+        "status": true
+      },
+      {
+        "providerId": 6,
+        "providerName": "Fidelity Life",
+        "status": true
+      },
+      {
+        "providerId": 7,
+        "providerName": "nib",
+        "status": true
+      },
+      {
+        "providerId": 8,
+        "providerName": "OnePath",
+        "status": true
+      },
+      {
+        "providerId": 9,
+        "providerName": "Partners Life",
+        "status": true
+      },
+      {
+        "providerId": 10,
+        "providerName": "Southern Cross",
+        "status": false
+      },
+      {
+        "providerId": 11,
+        "providerName": "Sovereign",
+        "status": true
+      },
+      {
+        "providerId": 12,
+        "providerName": "Fidelity nib",
+        "status": true
+      }
+    ]
+  }
+}
